@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#0a0a0a;
+      color:white;
+      font-family:Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
+
+    ::selection{
+      background:white;
+      color:black;
+    }
+
+    /* NAV */
+
+    nav{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      padding:25px 60px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      z-index:1000;
+
+      backdrop-filter:blur(10px);
+      background:rgba(0,0,0,0.2);
+    }
+
+    nav h1{
+      font-size:18px;
+      letter-spacing:3px;
+    }
+
+    nav ul{
+      display:flex;
+      gap:30px;
+      list-style:none;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      font-size:14px;
+      opacity:0.7;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      opacity:1;
+    }
+
+    /* HERO */
+
+    .hero{
+      width:100%;
+      height:100vh;
+
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+
+      text-align:center;
+      position:relative;
+    }
+
+    .hero h2{
+      font-size:7vw;
+      line-height:1;
+      letter-spacing:8px;
+      text-transform:uppercase;
+
+      animation:fadeUp 1s ease;
+    }
+
+    .hero p{
+      margin-top:25px;
+      color:#999;
+      font-size:18px;
+      letter-spacing:3px;
+
+      animation:fadeUp 1.5s ease;
+    }
+
+    .scroll{
+      position:absolute;
+      bottom:40px;
+      color:#666;
+      font-size:12px;
+      letter-spacing:4px;
+
+      animation:float 2s infinite;
+    }
+
+    /* SECTION */
+
+    section{
+      width:100%;
+      padding:120px 10%;
+    }
+
+    .title{
+      font-size:14px;
+      letter-spacing:5px;
+      color:#777;
+      margin-bottom:60px;
+    }
+
+    /* PROJECTS */
+
+    .projects{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:#111;
+      border:1px solid rgba(255,255,255,0.05);
+
+      padding:40px;
+      border-radius:25px;
+
+      transition:0.4s;
+
+      opacity:0;
+      transform:translateY(60px);
+    }
+
+    .card.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      background:#151515;
+      border-color:rgba(255,255,255,0.15);
+    }
+
+    .card h3{
+      font-size:28px;
+      margin-bottom:20px;
+    }
+
+    .card p{
+      color:#888;
+      line-height:1.8;
+      margin-bottom:25px;
+    }
+
+    .card a{
+      color:white;
+      text-decoration:none;
+      font-size:14px;
+      letter-spacing:2px;
+    }
+
+    /* ABOUT */
+
+    .about{
+      max-width:900px;
+    }
+
+    .about h2{
+      font-size:60px;
+      margin-bottom:30px;
+      line-height:1.2;
+    }
+
+    .about p{
+      color:#888;
+      line-height:2;
+      font-size:18px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      padding:80px 10%;
+      border-top:1px solid rgba(255,255,255,0.05);
+
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:20px;
+    }
+
+    footer p{
+      color:#666;
+    }
+
+    /* BG EFFECT */
+
+    .blur{
+      position:fixed;
+      width:500px;
+      height:500px;
+      background:rgba(255,255,255,0.04);
+      filter:blur(120px);
+      border-radius:50%;
+      z-index:-1;
+    }
+
+    .blur1{
+      top:-100px;
+      left:-100px;
+    }
+
+    .blur2{
+      bottom:-100px;
+      right:-100px;
+    }
+
+    /* ANIMATION */
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(10px);
+      }
+      100%{
+        transform:translateY(0);
+      }
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      nav{
+        padding:20px;
+      }
+
+      nav ul{
+        display:none;
+      }
+
+      .hero h2{
+        font-size:15vw;
+      }
+
+      .about h2{
+        font-size:40px;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="blur blur1"></div>
+  <div class="blur blur2"></div>
+
+  <nav>
+    <h1>PORTFOLIO</h1>
+
+    <ul>
+      <li><a href="#projects">PROJECTS</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+
+    <h2>
+      CREATIVE<br>
+      DEVELOPER
+    </h2>
+
+    <p>
+      FRONTEND · DESIGN · INTERACTION
+    </p>
+
+    <div class="scroll">
+      SCROLL
+    </div>
+
+  </section>
+
+  <section id="projects">
+
+    <div class="title">
+      SELECTED PROJECTS
+    </div>
+
+    <div class="projects">
+
+      <div class="card">
+        <h3>PROJECT ONE</h3>
+
+        <p>
+          감성적인 포트폴리오 웹사이트 디자인.
+          부드러운 인터랙션과 미니멀 UI 구성.
+        </p>
+
+        <a href="#">VIEW PROJECT</a>
+      </div>
+
+      <div class="card">
+        <h3>PROJECT TWO</h3>
+
+        <p>
+          다크모드 기반 랜딩페이지.
+          현대적인 레이아웃과 애니메이션 효과.
+        </p>
+
+        <a href="#">VIEW PROJECT</a>
+      </div>
+
+      <div class="card">
+        <h3>PROJECT THREE</h3>
+
+        <p>
+          모바일 반응형 UI 디자인.
+          심플하면서 고급스러운 인터페이스 구현.
+        </p>
+
+        <a href="#">VIEW PROJECT</a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="about">
+
+    <div class="title">
+      ABOUT
+    </div>
+
+    <div class="about">
+
+      <h2>
+        I CREATE<br>
+        MODERN DIGITAL<br>
+        EXPERIENCES
+      </h2>
+
+      <p>
+        감성적인 사용자 경험과 인터랙션을 중심으로
+        현대적인 웹사이트를 제작합니다.
+        미니멀한 디자인과 부드러운 애니메이션을 통해
+        몰입감 있는 웹 경험을 제공합니다.
+      </p>
+
+    </div>
+
+  </section>
+
+  <footer id="contact">
+
+    <p>
+      © 2026 PORTFOLIO
+    </p>
+
+    <p>
+      INSTAGRAM / GITHUB / EMAIL
+    </p>
+
+  </footer>
+
+  <script>
+
+    const cards = document.querySelectorAll('.card');
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+
+      });
+    },{
+      threshold:0.2
+    });
+
+    cards.forEach(card=>{
+      observer.observe(card);
+    });
+
+  </script>
+
+</body>
+</html>
