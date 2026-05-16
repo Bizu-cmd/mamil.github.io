@@ -1,420 +1,617 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio</title>
-
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-    body{
-      background:#0a0a0a;
-      color:white;
-      font-family:Arial, Helvetica, sans-serif;
-      overflow-x:hidden;
-    }
-
-    ::selection{
-      background:white;
-      color:black;
-    }
-
-    /* NAV */
-
-    nav{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      padding:25px 60px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      z-index:1000;
-
-      backdrop-filter:blur(10px);
-      background:rgba(0,0,0,0.2);
-    }
-
-    nav h1{
-      font-size:18px;
-      letter-spacing:3px;
-    }
-
-    nav ul{
-      display:flex;
-      gap:30px;
-      list-style:none;
-    }
-
-    nav a{
-      color:white;
-      text-decoration:none;
-      font-size:14px;
-      opacity:0.7;
-      transition:0.3s;
-    }
-
-    nav a:hover{
-      opacity:1;
-    }
-
-    /* HERO */
-
-    .hero{
-      width:100%;
-      height:100vh;
-
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-
-      text-align:center;
-      position:relative;
-    }
-
-    .hero h2{
-      font-size:7vw;
-      line-height:1;
-      letter-spacing:8px;
-      text-transform:uppercase;
-
-      animation:fadeUp 1s ease;
-    }
-
-    .hero p{
-      margin-top:25px;
-      color:#999;
-      font-size:18px;
-      letter-spacing:3px;
-
-      animation:fadeUp 1.5s ease;
-    }
-
-    .scroll{
-      position:absolute;
-      bottom:40px;
-      color:#666;
-      font-size:12px;
-      letter-spacing:4px;
-
-      animation:float 2s infinite;
-    }
-
-    /* SECTION */
-
-    section{
-      width:100%;
-      padding:120px 10%;
-    }
-
-    .title{
-      font-size:14px;
-      letter-spacing:5px;
-      color:#777;
-      margin-bottom:60px;
-    }
-
-    /* PROJECTS */
-
-    .projects{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:30px;
-    }
-
-    .card{
-      background:#111;
-      border:1px solid rgba(255,255,255,0.05);
-
-      padding:40px;
-      border-radius:25px;
-
-      transition:0.4s;
-
-      opacity:0;
-      transform:translateY(60px);
-    }
-
-    .card.show{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    .card:hover{
-      transform:translateY(-10px);
-      background:#151515;
-      border-color:rgba(255,255,255,0.15);
-    }
-
-    .card h3{
-      font-size:28px;
-      margin-bottom:20px;
-    }
-
-    .card p{
-      color:#888;
-      line-height:1.8;
-      margin-bottom:25px;
-    }
-
-    .card a{
-      color:white;
-      text-decoration:none;
-      font-size:14px;
-      letter-spacing:2px;
-    }
-
-    /* ABOUT */
-
-    .about{
-      max-width:900px;
-    }
-
-    .about h2{
-      font-size:60px;
-      margin-bottom:30px;
-      line-height:1.2;
-    }
-
-    .about p{
-      color:#888;
-      line-height:2;
-      font-size:18px;
-    }
-
-    /* FOOTER */
-
-    footer{
-      padding:80px 10%;
-      border-top:1px solid rgba(255,255,255,0.05);
-
-      display:flex;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:20px;
-    }
-
-    footer p{
-      color:#666;
-    }
-
-    /* BG EFFECT */
-
-    .blur{
-      position:fixed;
-      width:500px;
-      height:500px;
-      background:rgba(255,255,255,0.04);
-      filter:blur(120px);
-      border-radius:50%;
-      z-index:-1;
-    }
-
-    .blur1{
-      top:-100px;
-      left:-100px;
-    }
-
-    .blur2{
-      bottom:-100px;
-      right:-100px;
-    }
-
-    /* ANIMATION */
-
-    @keyframes fadeUp{
-      from{
-        opacity:0;
-        transform:translateY(40px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
-
-    @keyframes float{
-      0%{
-        transform:translateY(0);
-      }
-      50%{
-        transform:translateY(10px);
-      }
-      100%{
-        transform:translateY(0);
-      }
-    }
-
-    /* MOBILE */
-
-    @media(max-width:768px){
-
-      nav{
-        padding:20px;
-      }
-
-      nav ul{
-        display:none;
-      }
-
-      .hero h2{
-        font-size:15vw;
-      }
-
-      .about h2{
-        font-size:40px;
-      }
-
-    }
-
-  </style>
-</head>
-<body>
-
-  <div class="blur blur1"></div>
-  <div class="blur blur2"></div>
-
-  <nav>
-    <h1>PORTFOLIO</h1>
-
-    <ul>
-      <li><a href="#projects">PROJECTS</a></li>
-      <li><a href="#about">ABOUT</a></li>
-      <li><a href="#contact">CONTACT</a></li>
-    </ul>
-  </nav>
-
-  <section class="hero">
-
-    <h2>
-      CREATIVE<br>
-      DEVELOPER
-    </h2>
-
-    <p>
-      FRONTEND · DESIGN · INTERACTION
-    </p>
-
-    <div class="scroll">
-      SCROLL
-    </div>
-
-  </section>
-
-  <section id="projects">
-
-    <div class="title">
-      SELECTED PROJECTS
-    </div>
-
-    <div class="projects">
-
-      <div class="card">
-        <h3>PROJECT ONE</h3>
-
-        <p>
-          감성적인 포트폴리오 웹사이트 디자인.
-          부드러운 인터랙션과 미니멀 UI 구성.
-        </p>
-
-        <a href="#">VIEW PROJECT</a>
-      </div>
-
-      <div class="card">
-        <h3>PROJECT TWO</h3>
-
-        <p>
-          다크모드 기반 랜딩페이지.
-          현대적인 레이아웃과 애니메이션 효과.
-        </p>
-
-        <a href="#">VIEW PROJECT</a>
-      </div>
-
-      <div class="card">
-        <h3>PROJECT THREE</h3>
-
-        <p>
-          모바일 반응형 UI 디자인.
-          심플하면서 고급스러운 인터페이스 구현.
-        </p>
-
-        <a href="#">VIEW PROJECT</a>
-      </div>
-
-    </div>
-
-  </section>
-
-  <section id="about">
-
-    <div class="title">
-      ABOUT
-    </div>
-
-    <div class="about">
-
-      <h2>
-        I CREATE<br>
-        MODERN DIGITAL<br>
-        EXPERIENCES
-      </h2>
-
-      <p>
-        감성적인 사용자 경험과 인터랙션을 중심으로
-        현대적인 웹사이트를 제작합니다.
-        미니멀한 디자인과 부드러운 애니메이션을 통해
-        몰입감 있는 웹 경험을 제공합니다.
-      </p>
-
-    </div>
-
-  </section>
-
-  <footer id="contact">
-
-    <p>
-      © 2026 PORTFOLIO
-    </p>
-
-    <p>
-      INSTAGRAM / GITHUB / EMAIL
-    </p>
-
-  </footer>
-
-  <script>
-
-    const cards = document.querySelectorAll('.card');
-
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-          entry.target.classList.add('show');
-        }
-
-      });
-    },{
-      threshold:0.2
-    });
-
-    cards.forEach(card=>{
-      observer.observe(card);
-    });
-
-  </script>
-
-</body>
-</html>
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/index.html b/index.html
+index be861302621e2b73f89babd45c5aae67e5eae1c1..ba0b33eca115f7faf860a517fd248369a00fb5bf 100644
+--- a/index.html
++++ b/index.html
+@@ -1,12 +1,600 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="ko">
+ <head>
+-	<meta charset="UTF-8">
+-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+-	<title>Portfolio</title>
++  <meta charset="UTF-8" />
++  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
++  <title>FiveM 마약 밀매 수익 계산기</title>
++  <style>
++    :root {
++      color-scheme: dark;
++      --bg: #080b12;
++      --panel: rgba(18, 24, 38, 0.82);
++      --panel-strong: #111827;
++      --line: rgba(148, 163, 184, 0.2);
++      --text: #f8fafc;
++      --muted: #94a3b8;
++      --primary: #22c55e;
++      --primary-strong: #16a34a;
++      --accent: #38bdf8;
++      --danger: #fb7185;
++      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
++    }
++
++    * {
++      box-sizing: border-box;
++    }
++
++    body {
++      min-height: 100vh;
++      margin: 0;
++      background:
++        radial-gradient(circle at top left, rgba(34, 197, 94, 0.22), transparent 34rem),
++        radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 32rem),
++        var(--bg);
++      color: var(--text);
++      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, -apple-system, sans-serif;
++      line-height: 1.5;
++    }
++
++    main {
++      width: min(1180px, calc(100% - 32px));
++      margin: 0 auto;
++      padding: 48px 0;
++    }
++
++    .hero {
++      display: grid;
++      gap: 18px;
++      margin-bottom: 28px;
++    }
++
++    .eyebrow {
++      display: inline-flex;
++      width: fit-content;
++      align-items: center;
++      gap: 8px;
++      padding: 8px 13px;
++      border: 1px solid rgba(34, 197, 94, 0.35);
++      border-radius: 999px;
++      background: rgba(34, 197, 94, 0.12);
++      color: #bbf7d0;
++      font-size: 14px;
++      font-weight: 700;
++    }
++
++    h1 {
++      margin: 0;
++      font-size: clamp(34px, 7vw, 76px);
++      line-height: 1.02;
++      letter-spacing: -0.06em;
++    }
++
++    .hero p {
++      max-width: 760px;
++      margin: 0;
++      color: var(--muted);
++      font-size: 18px;
++    }
++
++    .layout {
++      display: grid;
++      grid-template-columns: minmax(320px, 0.95fr) minmax(360px, 1.25fr);
++      gap: 22px;
++      align-items: start;
++    }
++
++    .card {
++      border: 1px solid var(--line);
++      border-radius: 28px;
++      background: var(--panel);
++      box-shadow: var(--shadow);
++      backdrop-filter: blur(18px);
++    }
++
++    .form-card {
++      padding: 24px;
++      position: sticky;
++      top: 24px;
++    }
++
++    .result-card,
++    .table-card {
++      padding: 24px;
++    }
++
++    .stack {
++      display: grid;
++      gap: 18px;
++    }
++
++    .field {
++      display: grid;
++      gap: 8px;
++    }
++
++    label,
++    legend {
++      color: #dbeafe;
++      font-size: 14px;
++      font-weight: 800;
++    }
++
++    select,
++    input {
++      width: 100%;
++      border: 1px solid rgba(148, 163, 184, 0.28);
++      border-radius: 16px;
++      outline: none;
++      background: rgba(15, 23, 42, 0.86);
++      color: var(--text);
++      font-size: 16px;
++      padding: 14px 15px;
++      transition: border-color 0.2s, box-shadow 0.2s;
++    }
++
++    select:focus,
++    input:focus {
++      border-color: rgba(56, 189, 248, 0.85);
++      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.14);
++    }
++
++    fieldset {
++      margin: 0;
++      padding: 0;
++      border: 0;
++    }
++
++    .radio-grid {
++      display: grid;
++      grid-template-columns: repeat(2, 1fr);
++      gap: 10px;
++      margin-top: 9px;
++    }
++
++    .radio-card {
++      display: grid;
++      gap: 2px;
++      cursor: pointer;
++      padding: 14px;
++      border: 1px solid rgba(148, 163, 184, 0.22);
++      border-radius: 18px;
++      background: rgba(15, 23, 42, 0.72);
++    }
++
++    .radio-card input {
++      position: absolute;
++      opacity: 0;
++      pointer-events: none;
++    }
++
++    .radio-card:has(input:checked) {
++      border-color: rgba(34, 197, 94, 0.82);
++      background: rgba(34, 197, 94, 0.13);
++    }
++
++    .radio-card strong {
++      font-size: 15px;
++    }
++
++    .radio-card span,
++    .hint {
++      color: var(--muted);
++      font-size: 13px;
++    }
++
++    .quick-row {
++      display: flex;
++      flex-wrap: wrap;
++      gap: 8px;
++    }
++
++    button {
++      border: 0;
++      border-radius: 999px;
++      cursor: pointer;
++      background: rgba(148, 163, 184, 0.16);
++      color: #e2e8f0;
++      font-weight: 800;
++      padding: 9px 12px;
++    }
++
++    button:hover {
++      background: rgba(148, 163, 184, 0.26);
++    }
++
++    .summary {
++      display: grid;
++      grid-template-columns: repeat(2, minmax(0, 1fr));
++      gap: 14px;
++    }
++
++    .metric {
++      min-height: 120px;
++      padding: 18px;
++      border: 1px solid rgba(148, 163, 184, 0.18);
++      border-radius: 22px;
++      background: rgba(15, 23, 42, 0.72);
++    }
++
++    .metric.primary {
++      grid-column: 1 / -1;
++      background: linear-gradient(135deg, rgba(34, 197, 94, 0.22), rgba(56, 189, 248, 0.12));
++      border-color: rgba(34, 197, 94, 0.36);
++    }
++
++    .metric span {
++      display: block;
++      color: var(--muted);
++      font-size: 13px;
++      font-weight: 800;
++      text-transform: uppercase;
++      letter-spacing: 0.04em;
++    }
++
++    .metric strong {
++      display: block;
++      margin-top: 10px;
++      font-size: clamp(24px, 4vw, 42px);
++      letter-spacing: -0.04em;
++      overflow-wrap: anywhere;
++    }
++
++    .metric:not(.primary) strong {
++      font-size: clamp(20px, 3vw, 29px);
++    }
++
++    .positive {
++      color: #86efac;
++    }
++
++    .negative {
++      color: var(--danger);
++    }
++
++    .details {
++      display: grid;
++      gap: 10px;
++      margin-top: 18px;
++      padding: 18px;
++      border-radius: 22px;
++      background: rgba(2, 6, 23, 0.32);
++      border: 1px solid rgba(148, 163, 184, 0.14);
++    }
++
++    .detail-row {
++      display: flex;
++      justify-content: space-between;
++      gap: 14px;
++      color: #cbd5e1;
++    }
++
++    .detail-row strong {
++      color: var(--text);
++      text-align: right;
++    }
++
++    .table-card {
++      margin-top: 22px;
++      overflow: hidden;
++    }
++
++    .table-head {
++      display: flex;
++      justify-content: space-between;
++      gap: 14px;
++      align-items: end;
++      margin-bottom: 16px;
++    }
++
++    h2 {
++      margin: 0;
++      font-size: 22px;
++    }
++
++    .table-wrap {
++      overflow-x: auto;
++    }
++
++    table {
++      width: 100%;
++      border-collapse: collapse;
++      min-width: 680px;
++    }
++
++    th,
++    td {
++      padding: 13px 12px;
++      border-bottom: 1px solid rgba(148, 163, 184, 0.16);
++      text-align: right;
++      white-space: nowrap;
++    }
++
++    th:first-child,
++    td:first-child {
++      text-align: left;
++    }
++
++    th {
++      color: #bae6fd;
++      font-size: 13px;
++    }
++
++    tr.active {
++      background: rgba(34, 197, 94, 0.1);
++    }
++
++    .note {
++      margin: 16px 0 0;
++      color: var(--muted);
++      font-size: 13px;
++    }
++
++    @media (max-width: 880px) {
++      main {
++        padding: 28px 0;
++      }
++
++      .layout {
++        grid-template-columns: 1fr;
++      }
++
++      .form-card {
++        position: static;
++      }
++    }
++
++    @media (max-width: 560px) {
++      .summary,
++      .radio-grid {
++        grid-template-columns: 1fr;
++      }
++    }
++  </style>
+ </head>
+ <body>
+-  <p>Hello, World!</p>
++  <main>
++    <section class="hero" aria-labelledby="page-title">
++      <span class="eyebrow">💸 FiveM 밀매 계산기</span>
++      <h1 id="page-title">레벨별 마약 판매 수익 계산</h1>
++      <p>레벨, 품목, 구매 방식, 개수를 입력하면 총 사용 비용과 순수익을 바로 계산합니다. 원재료는 100개당 2억, 완제품은 100개당 3억 기준입니다.</p>
++    </section>
++
++    <section class="layout" aria-label="수익 계산기">
++      <form class="card form-card stack" id="calculator-form">
++        <div class="field">
++          <label for="level">레벨</label>
++          <select id="level" name="level"></select>
++        </div>
++
++        <div class="field">
++          <label for="drug">품목</label>
++          <select id="drug" name="drug">
++            <option value="weed">🌾 대마초</option>
++            <option value="cocaine">🌿 코카인</option>
++            <option value="lsd">🍁 LSD</option>
++          </select>
++        </div>
++
++        <fieldset>
++          <legend>구매 방식</legend>
++          <div class="radio-grid">
++            <label class="radio-card">
++              <input type="radio" name="purchaseType" value="raw" checked />
++              <strong>원재료 구매</strong>
++              <span>100개당 200,000,000원</span>
++            </label>
++            <label class="radio-card">
++              <input type="radio" name="purchaseType" value="finished" />
++              <strong>완제품 구매</strong>
++              <span>100개당 300,000,000원</span>
++            </label>
++          </div>
++        </fieldset>
++
++        <div class="field">
++          <label for="quantity">개수</label>
++          <input id="quantity" name="quantity" type="number" min="0" step="1" value="100" inputmode="numeric" />
++          <div class="quick-row" aria-label="빠른 개수 선택">
++            <button type="button" data-quantity="10">10개</button>
++            <button type="button" data-quantity="50">50개</button>
++            <button type="button" data-quantity="100">100개</button>
++            <button type="button" data-quantity="500">500개</button>
++          </div>
++        </div>
++
++        <div class="field">
++          <label for="sell-price">판매 단가</label>
++          <input id="sell-price" name="sellPrice" type="number" min="0" step="1000" inputmode="numeric" />
++          <p class="hint">레벨과 품목을 바꾸면 제공된 단가로 자동 입력되며, 직접 수정도 가능합니다.</p>
++        </div>
++      </form>
++
++      <div>
++        <section class="card result-card" aria-live="polite">
++          <div class="summary">
++            <article class="metric primary">
++              <span>순수익</span>
++              <strong id="net-profit">0원</strong>
++            </article>
++            <article class="metric">
++              <span>총 판매 금액</span>
++              <strong id="gross-sales">0원</strong>
++            </article>
++            <article class="metric">
++              <span>사용 비용</span>
++              <strong id="total-cost">0원</strong>
++            </article>
++            <article class="metric">
++              <span>개당 순수익</span>
++              <strong id="profit-per-item">0원</strong>
++            </article>
++            <article class="metric">
++              <span>수익률</span>
++              <strong id="margin-rate">0%</strong>
++            </article>
++          </div>
++
++          <div class="details">
++            <div class="detail-row"><span>선택 레벨 필요 경험치</span><strong id="required-exp">0 EXP</strong></div>
++            <div class="detail-row"><span>개당 매입 원가</span><strong id="cost-per-item">0원</strong></div>
++            <div class="detail-row"><span>100개 기준 순수익</span><strong id="profit-per-100">0원</strong></div>
++            <div class="detail-row"><span>손익분기 판매 단가</span><strong id="break-even">0원</strong></div>
++          </div>
++        </section>
++
++        <section class="card table-card" aria-labelledby="table-title">
++          <div class="table-head">
++            <div>
++              <h2 id="table-title">레벨별 판매 단가표</h2>
++              <p class="note">표의 순수익은 현재 선택한 구매 방식 기준으로 1개당 계산됩니다.</p>
++            </div>
++          </div>
++          <div class="table-wrap">
++            <table>
++              <thead>
++                <tr>
++                  <th>레벨</th>
++                  <th>필요 경험치</th>
++                  <th>🌾 대마초</th>
++                  <th>🌿 코카인</th>
++                  <th>🍁 LSD</th>
++                  <th>선택 품목 개당 순수익</th>
++                </tr>
++              </thead>
++              <tbody id="price-table"></tbody>
++            </table>
++          </div>
++        </section>
++      </div>
++    </section>
++  </main>
++
++  <script>
++    const levelPrices = [
++      { level: 1, exp: 0, weed: 1368000, cocaine: 1530000, lsd: 1947000 },
++      { level: 2, exp: 1000, weed: 1600000, cocaine: 1790000, lsd: 1980000 },
++      { level: 3, exp: 3000, weed: 1930000, cocaine: 1730000, lsd: 2140000 },
++      { level: 4, exp: 10000, weed: 2030000, cocaine: 1820000, lsd: 2250000 },
++      { level: 5, exp: 30000, weed: 2130000, cocaine: 1910000, lsd: 2360000 },
++      { level: 6, exp: 80000, weed: 2300000, cocaine: 2060000, lsd: 2550000 },
++      { level: 7, exp: 150000, weed: 2490000, cocaine: 2230000, lsd: 2750000 },
++      { level: 8, exp: 300000, weed: 2740000, cocaine: 2450000, lsd: 3030000 },
++      { level: 9, exp: 800000, weed: 2960000, cocaine: 2650000, lsd: 3270000 },
++      { level: 10, exp: 1500000, weed: 3250000, cocaine: 2910000, lsd: 3600000 },
++    ];
++
++    const purchaseCosts = {
++      raw: 2000000,
++      finished: 3000000,
++    };
++
++    const formatter = new Intl.NumberFormat("ko-KR");
++    const currency = (value) => `${formatter.format(Math.round(value))}원`;
++    const signedCurrency = (value) => `${value > 0 ? "+" : ""}${currency(value)}`;
++
++    const levelSelect = document.querySelector("#level");
++    const drugSelect = document.querySelector("#drug");
++    const quantityInput = document.querySelector("#quantity");
++    const sellPriceInput = document.querySelector("#sell-price");
++    const purchaseTypeInputs = document.querySelectorAll("input[name='purchaseType']");
++    const tableBody = document.querySelector("#price-table");
++
++    function getSelectedLevel() {
++      return levelPrices.find((item) => item.level === Number(levelSelect.value)) ?? levelPrices[0];
++    }
++
++    function getPurchaseType() {
++      return document.querySelector("input[name='purchaseType']:checked").value;
++    }
++
++    function updateSellPrice() {
++      const selectedLevel = getSelectedLevel();
++      sellPriceInput.value = selectedLevel[drugSelect.value];
++    }
++
++    function paintSigned(element, value) {
++      element.textContent = signedCurrency(value);
++      element.classList.toggle("positive", value >= 0);
++      element.classList.toggle("negative", value < 0);
++    }
++
++    function calculate() {
++      const selectedLevel = getSelectedLevel();
++      const drug = drugSelect.value;
++      const purchaseType = getPurchaseType();
++      const quantity = Math.max(Number(quantityInput.value) || 0, 0);
++      const sellPrice = Math.max(Number(sellPriceInput.value) || 0, 0);
++      const costPerItem = purchaseCosts[purchaseType];
++      const grossSales = sellPrice * quantity;
++      const totalCost = costPerItem * quantity;
++      const netProfit = grossSales - totalCost;
++      const profitPerItem = sellPrice - costPerItem;
++      const profitPer100 = profitPerItem * 100;
++      const marginRate = grossSales > 0 ? (netProfit / grossSales) * 100 : 0;
++
++      paintSigned(document.querySelector("#net-profit"), netProfit);
++      document.querySelector("#gross-sales").textContent = currency(grossSales);
++      document.querySelector("#total-cost").textContent = currency(totalCost);
++      paintSigned(document.querySelector("#profit-per-item"), profitPerItem);
++      document.querySelector("#margin-rate").textContent = `${marginRate.toFixed(1)}%`;
++      document.querySelector("#required-exp").textContent = `${formatter.format(selectedLevel.exp)} EXP`;
++      document.querySelector("#cost-per-item").textContent = currency(costPerItem);
++      paintSigned(document.querySelector("#profit-per-100"), profitPer100);
++      document.querySelector("#break-even").textContent = currency(costPerItem);
++
++      renderTable(drug, purchaseType, selectedLevel.level);
++    }
++
++    function renderTable(selectedDrug = drugSelect.value, purchaseType = getPurchaseType(), activeLevel = Number(levelSelect.value)) {
++      const costPerItem = purchaseCosts[purchaseType];
++
++      tableBody.innerHTML = levelPrices.map((item) => {
++        const selectedProfit = item[selectedDrug] - costPerItem;
++        return `
++          <tr class="${item.level === activeLevel ? "active" : ""}">
++            <td>LV.${String(item.level).padStart(2, "0")}</td>
++            <td>${formatter.format(item.exp)}</td>
++            <td>${currency(item.weed)}</td>
++            <td>${currency(item.cocaine)}</td>
++            <td>${currency(item.lsd)}</td>
++            <td class="${selectedProfit >= 0 ? "positive" : "negative"}">${signedCurrency(selectedProfit)}</td>
++          </tr>
++        `;
++      }).join("");
++    }
++
++    function init() {
++      levelSelect.innerHTML = levelPrices.map((item) => (
++        `<option value="${item.level}">LV.${String(item.level).padStart(2, "0")} · 필요 경험치 ${formatter.format(item.exp)}</option>`
++      )).join("");
++
++      levelSelect.value = "1";
++      updateSellPrice();
++      calculate();
++    }
++
++    levelSelect.addEventListener("change", () => {
++      updateSellPrice();
++      calculate();
++    });
++
++    drugSelect.addEventListener("change", () => {
++      updateSellPrice();
++      calculate();
++    });
++
++    quantityInput.addEventListener("input", calculate);
++    sellPriceInput.addEventListener("input", calculate);
++    purchaseTypeInputs.forEach((input) => input.addEventListener("change", calculate));
++
++    document.querySelectorAll("[data-quantity]").forEach((button) => {
++      button.addEventListener("click", () => {
++        quantityInput.value = button.dataset.quantity;
++        calculate();
++      });
++    });
++
++    init();
++  </script>
+ </body>
+-</html>
+\ No newline at end of file
++</html>
+ 
+EOF
+)
